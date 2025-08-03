@@ -24,7 +24,7 @@ I believe in the power of data to drive intelligent business decisions and am al
 - 🌱 I’m currently deepening my knowledge of **Distributed Systems Architecture** and **MLOps** best practices to bridge the gap between data engineering and machine learning model deployment.
 - 👯 I’m looking to collaborate on open-source projects related to **ETL/ELT, data pipelines, or AI model implementation**.
 - 💬 Ask me about **Python, SQL, Data Architecture, Airflow, Spark**, and building end-to-end pipelines.
-- 📫 How to reach me: **[LinkedIn](https://www.linkedin.com/in/oscar-sinaga/)** or email at `oscar.email@example.com`.
+- 📫 How to reach me: **[LinkedIn](https://www.linkedin.com/in/oscar-sinaga/)** or email at `oscarmsinaga@gmail.com`.
 
 ---
 
