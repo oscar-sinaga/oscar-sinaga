@@ -50,4 +50,4 @@ Here are a few projects that highlight my skills:
 
 <br>
 
-[![Oscar's GitHub Stats](https://github-readme-stats.vercel.app/api?username=oscarsinaga&show_icons=true&theme=tokyonight)](https://github.com/anuraghazra/github-readme-stats)
+[![Oscar's GitHub Stats](https://github-readme-stats.vercel.app/api?username=oscar-sinaga&show_icons=true&theme=tokyonight)](https://github.com/anuraghazra/github-readme-stats)
