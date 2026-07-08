@@ -75,11 +75,11 @@ FALLBACK = {
     "since": "2021",
     "stars": 3,
     "langs": {
-        "Python": 92,
-        "PLpgSQL": 3,
-        "Dockerfile": 2,
-        "Shell": 2,
-        "HTML": 1,
+        "Python": 88,
+        "Dockerfile": 4,
+        "HTML": 3,
+        "Shell": 3,
+        "PLpgSQL": 2,
     },
 }
 
@@ -105,17 +105,29 @@ def collect() -> dict:
     owned = [r for r in repos if not r.get("fork")]
     total_stars = sum(r.get("stargazers_count", 0) for r in owned)
 
-    langs: dict[str, int] = {}
+    # Per-repo normalization: each repo contributes its own language mix,
+    # normalized to 1, so a single huge (output-inflated notebook) repo can't
+    # dominate the whole breakdown by raw bytes. This surfaces the languages
+    # actually used across projects, not just whichever repo has the most bytes.
+    shares: dict[str, float] = {}
     for r in owned:
         try:
             data = api(f"/repos/{USER}/{r['name']}/languages")
         except urllib.error.HTTPError:
             continue
+        repo: dict[str, int] = {}
         for name, size in data.items():
             if name in LANG_EXCLUDE:
                 continue
             name = LANG_RENAME.get(name, name)
-            langs[name] = langs.get(name, 0) + size
+            repo[name] = repo.get(name, 0) + size
+        repo_total = sum(repo.values())
+        if repo_total <= 0:
+            continue
+        for name, size in repo.items():
+            shares[name] = shares.get(name, 0.0) + size / repo_total
+
+    langs = {name: round(share * 1000) for name, share in shares.items()}
 
     api_name = user.get("name")
     return {
@@ -139,8 +151,10 @@ def esc(s: str) -> str:
 
 
 def render(d: dict) -> str:
-    top = sorted(d["langs"].items(), key=lambda kv: kv[1], reverse=True)[:6]
-    total = sum(size for _, size in top) or 1
+    ranked = sorted(d["langs"].items(), key=lambda kv: kv[1], reverse=True)
+    total = sum(size for _, size in ranked) or 1
+    # Percentages are relative to the full total; hide anything under ~1%.
+    top = [(n, s) for n, s in ranked if s / total >= 0.01][:6] or ranked[:1]
 
     W, H = 480, 260
     parts: list[str] = []
