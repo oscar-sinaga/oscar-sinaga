@@ -1,0 +1,46 @@
+name: Update GitHub stats card
+
+# Regenerates assets/github-stats.svg from live GitHub data and commits it.
+# The card is a static SVG stored in the repo, so it always renders (no
+# third-party service at view time) and never hits an anonymous rate limit —
+# the API calls happen here, authenticated with the built-in GITHUB_TOKEN.
+
+on:
+  schedule:
+    - cron: "0 0 * * 1"   # weekly, Monday 00:00 UTC
+  push:
+    branches: [main]
+    paths:
+      - "scripts/generate_stats_svg.py"
+      - ".github/workflows/update-stats.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Generate stats card
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python scripts/generate_stats_svg.py "${{ github.repository_owner }}" assets/github-stats.svg
+
+      - name: Commit if changed
+        run: |
+          git config user.name "oscar-sinaga"
+          git config user.email "83577027+oscar-sinaga@users.noreply.github.com"
+          if ! git diff --quiet -- assets/github-stats.svg; then
+            git add assets/github-stats.svg
+            git commit -m "chore: refresh GitHub stats card"
+            git push
+          else
+            echo "No changes to stats card."
+          fi
