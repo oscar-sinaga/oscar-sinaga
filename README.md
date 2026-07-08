@@ -1,8 +1,9 @@
 <h1 align="center">Hi, I'm Oscar Sinaga 👋</h1>
 
 <p align="center">
-  <b>Data Engineer · Data Scientist · Credit Risk Modeler</b><br>
-  I build the data pipelines <i>and</i> the models that run on top of them — from raw data to production ML in the financial services sector.
+  <b>Data Scientist · Credit Risk Modeler</b><br>
+  <sub>also working as an <b>AI Engineer</b> &amp; <b>Data Engineer</b></sub><br>
+  I build credit-risk models and the data/ML systems that put them into production — in the financial services sector.
 </p>
 
 <p align="center">
@@ -14,9 +15,9 @@
 
 ### 👤 About Me
 
-I'm a **Data Engineer** who grew into **data science** and **credit risk modeling**. My foundation is engineering: designing ETL/ELT pipelines, orchestrating workflows, and processing data at scale. On top of that I develop the models the business actually uses — with a strong focus on **credit scoring**, where a model's *transparency and auditability* matter as much as its accuracy.
+I'm a **Data Scientist** and **Credit Risk Modeler** in the financial services sector, focused on building **credit scoring / scorecard** models — where a model's *transparency and auditability* matter as much as its accuracy.
 
-What I enjoy most is owning the full path end to end: getting the data flowing reliably, building and validating the model, and doing the MLOps work to keep it running in production — not just living in a notebook.
+I also work as an **AI Engineer** and **Data Engineer**: I build the ML/AI systems and data pipelines around my models, so they don't just live in a notebook but run reliably in production. That means owning the full path end to end — data flowing in, model built and validated, and the MLOps to keep it serving.
 
 ---
 
@@ -52,19 +53,19 @@ What I enjoy most is owning the full path end to end: getting the data flowing r
 
 | Domain | What I work with |
 | :--- | :--- |
-| **Data Engineering** | ETL/ELT design, workflow orchestration (Airflow), distributed processing (PySpark), data warehousing, data modeling |
 | **Credit Risk / Scoring** | Credit scorecard development, creditworthiness prediction, model validation & documentation |
 | **Data Science / ML** | Classification & regression, feature engineering, EDA, model evaluation |
+| **AI / ML Engineering** | ML/AI systems & APIs, model serving, MLOps — TFX pipelines, MLflow tracking, CI/CD for training & deployment |
 | **NLP** | Aspect-based sentiment analysis, named-entity recognition, text classification |
-| **MLOps** | TFX pipelines, MLflow experiment tracking, CI/CD for model training & deployment |
+| **Data Engineering** | ETL/ELT design, workflow orchestration (Airflow), distributed processing (PySpark), data warehousing, data modeling |
 
 ---
 
 ### 🚀 What I'm Working On
 
-- 🔧 Designing and orchestrating **data pipelines** — moving from raw sources to analysis- and model-ready data with Airflow and PySpark.
 - 🏦 Building an **automated credit scorecard engine** — WoE/IV auto-binning, feature selection over logistic regression, and audit-ready reporting, so risk models are faster to build and consistent to validate.
-- ⚙️ Deepening **MLOps** practice: reproducible pipelines with **TFX**, experiment tracking with **MLflow**, and **CI/CD** so training and deployment run automatically.
+- 🤖 Working as an **AI/ML engineer** — turning models into services and reproducible pipelines with **TFX**, **MLflow**, and **CI/CD** so training and deployment run automatically.
+- 🔧 Designing and orchestrating **data pipelines** — moving raw sources to analysis- and model-ready data with Airflow and PySpark.
 
 ---
 
