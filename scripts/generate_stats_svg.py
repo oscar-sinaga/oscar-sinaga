@@ -24,6 +24,13 @@ API = "https://api.github.com"
 # Languages we don't want to count as "code" in the breakdown.
 LANG_EXCLUDE = {"Roff", "TeX"}
 
+# Notebooks are Python; GitHub counts their (output-inflated) bytes as a
+# separate "Jupyter Notebook" language, which otherwise dwarfs everything.
+# Fold them into Python so the breakdown reflects the actual language used.
+LANG_RENAME = {"Jupyter Notebook": "Python"}
+
+DISPLAY_NAME = "Oscar Sinaga"
+
 # tokyonight-ish palette
 BG = "#1a1b27"
 BORDER = "#2a2e42"
@@ -68,11 +75,11 @@ FALLBACK = {
     "since": "2021",
     "stars": 3,
     "langs": {
-        "Jupyter Notebook": 60,
-        "Python": 30,
-        "Vue": 5,
-        "TypeScript": 4,
-        "Svelte": 1,
+        "Python": 92,
+        "PLpgSQL": 3,
+        "Dockerfile": 2,
+        "Shell": 2,
+        "HTML": 1,
     },
 }
 
@@ -107,10 +114,12 @@ def collect() -> dict:
         for name, size in data.items():
             if name in LANG_EXCLUDE:
                 continue
+            name = LANG_RENAME.get(name, name)
             langs[name] = langs.get(name, 0) + size
 
+    api_name = user.get("name")
     return {
-        "name": user.get("name") or USER,
+        "name": api_name if api_name and api_name != USER else DISPLAY_NAME,
         "public_repos": user.get("public_repos", len(owned)),
         "followers": user.get("followers", 0),
         "following": user.get("following", 0),
